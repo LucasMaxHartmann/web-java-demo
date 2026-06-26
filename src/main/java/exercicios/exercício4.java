@@ -8,11 +8,20 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet
+@WebServlet("/produto/*")
 public class exercício4 extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+        resp.setContentType("html/text");
 
+        String pathInfo = req.getPathInfo();
+
+        if (pathInfo != null && pathInfo.length() > 1) {
+            resp.getWriter().println("<h1>Você está vendo os detalhes do produto: " + pathInfo + "</h1>");
+        } else {
+            resp.getWriter().println("<h1>Produto não informado</h1>");
+        }
     }
 }
