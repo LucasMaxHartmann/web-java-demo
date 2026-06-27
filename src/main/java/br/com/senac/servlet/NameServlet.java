@@ -1,4 +1,4 @@
-package br.com.senac;
+package br.com.senac.servlet;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -8,12 +8,15 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet("/hello")
-public class HelloServlet extends HttpServlet {
+@WebServlet("/name")
+public class NameServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html;charset=UTF-8");
-        resp.getWriter().println("<h1>Hello Wordl!</h1>");
+        String nome = req.getParameter("nome"); // ?nome=Lucas -- http://localhost:8080/java-web-demo/name?nome=Lucas --
+
+        resp.getWriter().println("<h1>Olá " + nome + "</h1>");
+
     }
 }
